@@ -1,3 +1,4 @@
 function endsWith(x, y) {
-  return x.lastIndexOf(y) === x.length - y.length;
+  let index = x.lastIndexOf(y);
+  return index !== -1 && index === x.length - y.length;
 }
