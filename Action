@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# 現在のディレクトリに.gitディレクトリが存在するかを確認
+if [ -d ".git" ]; then
+    # ユーザーに確認を求める
+    read -p "このディレクトリからGitリポジトリ情報を削除します。よろしいですか？ (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # .gitディレクトリを強制的に再帰的に削除
+        rm -rf .git
+        echo "Gitリポジトリ情報を削除しました。"
+    else
+        echo "キャンセルしました。"
+    fi
+else
+    echo "このディレクトリはGitリポジトリではありません。"
+fi
+
+#!/bin/bash
+
+# 現在のディレクトリに.gitディレクトリが存在するかを確認
+if [ -d ".git" ]; then
+    # ユーザーに確認を求める
+    read -p "このディレクトリを完全に削除します。よろしいですか？ (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # 親ディレクトリに移動して、現在のディレクトリを削除
+        cd ..
+        rm -rf "$(basename "$PWD")"
+        echo "ディレクトリを削除しました。"
+    else
+        echo "キャンセルしました。"
+    fi
+else
+    echo "このディレクトリはGitリポジトリではありません。"
+fi
